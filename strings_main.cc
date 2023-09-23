@@ -18,15 +18,18 @@
 
 
 int main(int argc, char *argv[]) {
-  CheckCorrectParameters(argc, argv, 2);
+  CheckCorrectParameters(argc, argv, 3);
 
   std::fstream input_file{argv[1]};
+  std::fstream output_file{argv[2]};
   
   Lenguaje lenguaje;
   lenguaje.FileWrite(input_file);
-  lenguaje.PrintLenguajes();
-  lenguaje.PrintLength();
-  lenguaje.PrintReverse();
-  
+  lenguaje.PrintLenguajes(output_file);
+  lenguaje.PrintLength(output_file);
+  lenguaje.PrintReverse(output_file);
+  lenguaje.PrintPreffix(output_file);
+  lenguaje.PrintSuffix(output_file);
+
   return 0;
 }

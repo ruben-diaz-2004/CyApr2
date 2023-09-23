@@ -20,9 +20,11 @@ class Lenguaje {
   public:
   Lenguaje() { cadenas_.clear(), lenguaje_.clear(); }
   void FileWrite(std::fstream& input_file);
-  void PrintLenguajes();
-  void PrintLength();
-  void PrintReverse();
+  void PrintLenguajes(std::fstream& output_file);
+  void PrintLength(std::fstream& output_file);
+  void PrintReverse(std::fstream& output_file);
+  void PrintPreffix(std::fstream& output_file);
+  void PrintSuffix(std::fstream& output_file);
 
   private:
   std::map<int, std::string> cadenas_;

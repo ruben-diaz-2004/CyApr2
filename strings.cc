@@ -43,36 +43,61 @@ void Lenguaje::FileWrite(std::fstream& input_file) {
   }
 }
 
-void Lenguaje::PrintLenguajes() {
+void Lenguaje::PrintLenguajes(std::fstream& output_file) {
   bool first_character = true;
   for (const auto& entrada : lenguaje_) {
     const std::set<char>& lenguaje = entrada.second;
-    std::cout << "{";
+    output_file << "{";
     for (char caracter: lenguaje) {
       if (first_character) {
-        std::cout << caracter;
+        output_file << caracter;
         first_character = false;
-      } else { std::cout << ", " << caracter; }
+      } else { output_file << ", " << caracter; }
     }
-    std::cout << "}" << std::endl;
+    output_file << "}" << std::endl;
     first_character = true;
   }
 }
 
 
-void Lenguaje::PrintLength() {
+void Lenguaje::PrintLength(std::fstream& output_file) {
   for (const auto& entrada: cadenas_) {
     const std::string& cadena = entrada.second;
-    std::cout << cadena.length() << std::endl;
+    output_file << cadena.length() << std::endl;
   }
 }
 
 
-void Lenguaje::PrintReverse() {
+void Lenguaje::PrintReverse(std::fstream& output_file) {
   for (const auto& entrada: cadenas_) {
     const std::string& cadena = entrada.second;
     std::string cadena_inversa = cadena;
     std::reverse(cadena_inversa.begin(), cadena_inversa.end());
-    std::cout << cadena_inversa << std::endl;
+    output_file << cadena_inversa << std::endl;
+  }
+}
+
+void Lenguaje::PrintPreffix(std::fstream& output_file) {
+  for (const auto& entrada: cadenas_) {
+    const std::string& cadena = entrada.second;
+    output_file << "{&";
+    for (int longitud{1}; longitud <= cadena.length(); ++longitud) {
+      std::string prefijo = cadena.substr(0, longitud);
+      output_file << ", " << prefijo;
+    }
+    output_file << "}" << std::endl;
+  }
+}
+
+
+void Lenguaje::PrintSuffix(std::fstream& output_file) {
+  for (const auto& entrada: cadenas_) {
+    const std::string& cadena = entrada.second;
+    output_file << "{&";
+    for (int i = (cadena.length() - 1); i >= 0; --i) {
+      std::string suffix = cadena.substr(i);
+      output_file << ", " << suffix;
+    }
+    output_file << "}" << std::endl;
   }
 }
