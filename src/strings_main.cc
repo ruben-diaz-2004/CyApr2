@@ -18,18 +18,36 @@
 
 
 int main(int argc, char *argv[]) {
-  CheckCorrectParameters(argc, argv, 3);
+  CheckCorrectParameters(argc, argv, 4);
 
-  std::fstream input_file{argv[1]};
-  std::fstream output_file{argv[2]};
+  std::ifstream input_file{argv[1]};
+  std::ofstream output_file{argv[2]};
+  output_file.clear();
   
+  int opcode = std::stoi(argv[3]);
   Lenguaje lenguaje;
   lenguaje.FileWrite(input_file);
+
+  switch (opcode) {
+  case 1:
   lenguaje.PrintLenguajes(output_file);
+    break;
+  case 2:
   lenguaje.PrintLength(output_file);
+    break;
+  case 3:
   lenguaje.PrintReverse(output_file);
+    break;
+  case 4:
   lenguaje.PrintPreffix(output_file);
+    break;
+  case 5:
   lenguaje.PrintSuffix(output_file);
+    break;
+  default:
+  std::cerr << "Error al leer el opcode\n";
+    break;
+  }
 
   return 0;
 }

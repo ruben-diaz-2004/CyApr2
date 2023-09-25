@@ -24,7 +24,7 @@
  * tanto la cadena cruda, como los alfabetos de los que provienen
  * @param input_file. El archivo de entrada
 */
-void Lenguaje::FileWrite(std::fstream& input_file) {
+void Lenguaje::FileWrite(std::ifstream& input_file) {
   std::string cadena_de_entrada{""};
   int localizador{0};
 
@@ -43,7 +43,12 @@ void Lenguaje::FileWrite(std::fstream& input_file) {
   }
 }
 
-void Lenguaje::PrintLenguajes(std::fstream& output_file) {
+
+/**
+ * Método que imprime los lenguajes almacenados en la clase
+ * @param output_file. Fichero de salida donde imprimir los lenguajes
+*/
+void Lenguaje::PrintLenguajes(std::ofstream& output_file) {
   bool first_character = true;
   for (const auto& entrada : lenguaje_) {
     const std::set<char>& lenguaje = entrada.second;
@@ -57,10 +62,15 @@ void Lenguaje::PrintLenguajes(std::fstream& output_file) {
     output_file << "}" << std::endl;
     first_character = true;
   }
+  output_file << std::endl;
 }
 
 
-void Lenguaje::PrintLength(std::fstream& output_file) {
+/**
+ * Método que imprime la longitud de las cadenas de entrada
+ * @param output_file. Fichero de salida.
+*/
+void Lenguaje::PrintLength(std::ofstream& output_file) {
   for (const auto& entrada: cadenas_) {
     const std::string& cadena = entrada.second;
     output_file << cadena.length() << std::endl;
@@ -68,7 +78,12 @@ void Lenguaje::PrintLength(std::fstream& output_file) {
 }
 
 
-void Lenguaje::PrintReverse(std::fstream& output_file) {
+/**
+ * Método que imprime las cadenas de forma inversa
+ * Utiliza la librería <algorithm>
+ * @param output_file. Fichero de salida donde imprimir las cadenas
+*/
+void Lenguaje::PrintReverse(std::ofstream& output_file) {
   for (const auto& entrada: cadenas_) {
     const std::string& cadena = entrada.second;
     std::string cadena_inversa = cadena;
@@ -77,7 +92,12 @@ void Lenguaje::PrintReverse(std::fstream& output_file) {
   }
 }
 
-void Lenguaje::PrintPreffix(std::fstream& output_file) {
+
+/**
+ * Método que imprime los prefijos posibles de las cadenas
+ * @param output_file. Fichero de salida donde imprimir los prefijos
+*/
+void Lenguaje::PrintPreffix(std::ofstream& output_file) {
   for (const auto& entrada: cadenas_) {
     const std::string& cadena = entrada.second;
     output_file << "{&";
@@ -90,7 +110,11 @@ void Lenguaje::PrintPreffix(std::fstream& output_file) {
 }
 
 
-void Lenguaje::PrintSuffix(std::fstream& output_file) {
+/**
+ * Método que imprime los sufijos posibles de las cadenas
+ * @param output_file. Fichero de salida donde imprimir los sufijos
+*/
+void Lenguaje::PrintSuffix(std::ofstream& output_file) {
   for (const auto& entrada: cadenas_) {
     const std::string& cadena = entrada.second;
     output_file << "{&";

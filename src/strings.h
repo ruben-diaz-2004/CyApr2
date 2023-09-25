@@ -16,15 +16,20 @@
 #include <map>
 #include <set>
 
+/**
+ * Clase Lenguaje que almacena las cadenas de entrada
+ * y produce sus respectivos lenguajes para después 
+ * operar tanto con las cadenas crudas como con los lenguajes
+*/
 class Lenguaje {
   public:
   Lenguaje() { cadenas_.clear(), lenguaje_.clear(); }
-  void FileWrite(std::fstream& input_file);
-  void PrintLenguajes(std::fstream& output_file);
-  void PrintLength(std::fstream& output_file);
-  void PrintReverse(std::fstream& output_file);
-  void PrintPreffix(std::fstream& output_file);
-  void PrintSuffix(std::fstream& output_file);
+  void FileWrite(std::ifstream& input_file);
+  void PrintLenguajes(std::ofstream& output_file);
+  void PrintLength(std::ofstream& output_file);
+  void PrintReverse(std::ofstream& output_file);
+  void PrintPreffix(std::ofstream& output_file);
+  void PrintSuffix(std::ofstream& output_file);
 
   private:
   std::map<int, std::string> cadenas_;
