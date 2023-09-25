@@ -10,6 +10,8 @@
   * cadenas junto con sus respectivos alfabetos. Y es capaz de realizar varias 
   * comprobaciones básicas sobre ellas
   */
+#ifndef STRINGS_H_
+#define STRINGS_H_
 
 #include <iostream>
 #include <fstream>
@@ -30,8 +32,23 @@ class Lenguaje {
   void PrintReverse(std::ofstream& output_file);
   void PrintPreffix(std::ofstream& output_file);
   void PrintSuffix(std::ofstream& output_file);
+  friend std::ofstream& operator<<(std::ofstream& output_file, const Lenguaje& lenguaje);
 
   private:
   std::map<int, std::string> cadenas_;
   std::map<int, std::set<char>> lenguaje_;
 };
+
+  // std::ofstream& operator<<(std::ofstream& output_file, const Lenguaje& lenguaje) {
+  //   for (const auto& entrada: lenguaje.lenguaje_) {
+  //     const std::set<char>& copy_lenguaje = entrada.second;
+  //     output_file << "{";
+  //     for (char caracter : copy_lenguaje) {
+  //       output_file << caracter << ", ";
+  //     }
+  //     output_file << "}" << std::endl;
+  //   }
+  //   return output_file;
+  // }
+
+  #endif

@@ -48,22 +48,22 @@ void Lenguaje::FileWrite(std::ifstream& input_file) {
  * Método que imprime los lenguajes almacenados en la clase
  * @param output_file. Fichero de salida donde imprimir los lenguajes
 */
-void Lenguaje::PrintLenguajes(std::ofstream& output_file) {
-  bool first_character = true;
-  for (const auto& entrada : lenguaje_) {
-    const std::set<char>& lenguaje = entrada.second;
-    output_file << "{";
-    for (char caracter: lenguaje) {
-      if (first_character) {
-        output_file << caracter;
-        first_character = false;
-      } else { output_file << ", " << caracter; }
-    }
-    output_file << "}" << std::endl;
-    first_character = true;
-  }
-  output_file << std::endl;
-}
+// void Lenguaje::PrintLenguajes(std::ofstream& output_file) {
+//   bool first_character = true;
+//   for (const auto& entrada : lenguaje_) {
+//     const std::set<char>& lenguaje = entrada.second;
+//     output_file << "{";
+//     for (char caracter: lenguaje) {
+//       if (first_character) {
+//         output_file << caracter;
+//         first_character = false;
+//       } else { output_file << ", " << caracter; }
+//     }
+//     output_file << "}" << std::endl;
+//     first_character = true;
+//   }
+//   output_file << std::endl;
+// }
 
 
 /**
@@ -124,4 +124,29 @@ void Lenguaje::PrintSuffix(std::ofstream& output_file) {
     }
     output_file << "}" << std::endl;
   }
+}
+
+
+/**
+ * Sobrecarga del operador <<, que imprime en el fichero de salida los lenguajes
+ * @param output_file. Fichero de salida donde se deben imprimir los lenguajes
+ * @param lenguaje. Objeto de la clase Lenguaje. El objeto contiene la información del lenguaje
+ * @return ouput_file. Devuelve el fichero con los lenguajes escritos
+*/
+std::ofstream& operator<<(std::ofstream& output_file, const Lenguaje& lenguaje) {
+  bool first_character = true;
+  for (const auto& entrada: lenguaje.lenguaje_) {
+    const std::set<char>& copy_lenguaje = entrada.second;
+    output_file << "{";
+    for (char caracter : copy_lenguaje) {
+      if (first_character) {
+        output_file << caracter;
+        first_character = false;
+      } else { output_file << ", " << caracter; }
+    }
+    output_file << "}" << std::endl;
+    first_character = true;
+  }
+  output_file << std::endl;
+  return output_file;
 }

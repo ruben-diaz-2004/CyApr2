@@ -30,7 +30,8 @@ int main(int argc, char *argv[]) {
 
   switch (opcode) {
   case 1:
-  lenguaje.PrintLenguajes(output_file);
+//  lenguaje.PrintLenguajes(output_file);
+  output_file << lenguaje;
     break;
   case 2:
   lenguaje.PrintLength(output_file);
