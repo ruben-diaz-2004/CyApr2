@@ -31,6 +31,7 @@ bool CheckCorrectParameters(const int argc, char* argv[], const int kCorrectNumb
       std::cout << "Por su parte, el fichero fileout tambien debe ser un fichero de texto (.txt) en ";
       std::cout << "el que se imprimira la salida del programa";
       std::cout << std::endl << std::endl;
+      exit(EXIT_SUCCESS);
     }
   }
   if (argc != kCorrectNumber) {

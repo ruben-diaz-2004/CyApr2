@@ -26,4 +26,4 @@ p02_strings: src/strings_main.cc src/strings.cc
 .PHONY: all clean
 clean:
 		rm -f src/*.o
-		rm -f p01_single_grades
+		rm -f p02_strings
